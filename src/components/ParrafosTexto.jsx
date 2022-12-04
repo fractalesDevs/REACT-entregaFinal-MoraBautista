@@ -1,8 +1,8 @@
-const ParrafosTexto = (props) => {
+const ParrafosTexto = ({titulo,txt}) => {
     return (
       <div>
-<h2>{props.titulo}</h2>
-  <p>{props.txt}</p>
+<h2>{titulo}</h2>
+  <p>{txt}</p>
       </div>
    
     )
