@@ -1,15 +1,7 @@
+import CartWidget from './CartWidget'
+
 function NavBar() {
   const marca = "KHAYIM";
-
-  const Carrito = () => {
-    let contador = 1;
-    return(
-        <div id="carritoCompras">
-    <img id="carrito" src="../public/carrito.svg" />
-    <span className="numArticulos">{contador}</span>
-    </div>
-    )
-  };
   return (
     <div className="container">
       <div className="row">
@@ -51,7 +43,7 @@ function NavBar() {
           </nav>
         </div>
         <div className='col-lg-2 col-md-2 col-sm-2'>
-            <Carrito />
+            <CartWidget />
         </div>
       </div>
     </div>
