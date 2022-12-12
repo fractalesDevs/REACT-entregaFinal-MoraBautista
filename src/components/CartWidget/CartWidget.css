@@ -1,0 +1,10 @@
+#carrito {
+    width: 70%;
+    height: auto;
+
+}
+
+#carritoCompras{
+    width: 5% !important;
+    display: inline-block;
+}
