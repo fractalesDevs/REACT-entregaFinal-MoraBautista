@@ -52,7 +52,7 @@ function ItemListContainer() {
             Cargando productos...
             </h4> :
            products.map( (product) => 
-            <ItemList key={product.id} id={product.id} nombre={product.nombre} clas={product.clas} piezas={product.piezas} precio={product.precio} img={product.img} />) }
+            <ItemList key={product.id} product={product} />) }
         </div>
       </div>
       

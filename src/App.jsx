@@ -1,16 +1,32 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import React from 'react'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+
 import Navbar from './components/Navbar/Navbar'
-import Contador from './components/Contador/Contador'
 import ItemListContainer from './views/ItemListContainer'
 import ItemDetailContainer from './views/ItemDetailContainer'
 import CarritoContainer from './views/CarritoContainer'
-
+import { prod } from './helpers/consulta'
 
 import './App.css'
+import { createContext } from 'react'
+
+export const ContextoGral = createContext( [] ) // Carrito de compra
+
 
 function App() {
+
+  const saludar = ()=> console.log('Hola Bola!!!')
+  console.log(ContextoGral);
+
   return ( 
+   
+    <ContextoGral.Provider value={
+      {
+        prod,
+        saludar
+      }
+    }>
+
 <BrowserRouter>
       <Navbar />
       <Routes>
@@ -24,8 +40,12 @@ function App() {
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
 
-      <Contador />
+      
     </BrowserRouter>
+
+    </ContextoGral.Provider>
+
+   
    )
 
 }

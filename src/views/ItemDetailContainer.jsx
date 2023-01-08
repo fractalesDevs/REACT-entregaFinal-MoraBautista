@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
   const {prodId} = useParams()
 
 
-    const [proDetalle, setProDetalle] = useState( [] );
+    const [proDetalle, setProDetalle] = useState( {} );
 
     useEffect( () => {
         consulta(prodId) //Simulación de fetch
@@ -22,7 +22,7 @@ const ItemDetailContainer = () => {
 
   return (
     <>
-    <ItemDetail key={proDetalle.id} nombre={proDetalle.nombre} clas={proDetalle.clas} piezas={proDetalle.piezas} precio={proDetalle.precio} img={proDetalle.img} />
+    <ItemDetail key={proDetalle.id} proDetalle={proDetalle} />
     </>
   )
 }

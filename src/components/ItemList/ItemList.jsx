@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom'
 import './ItemList.css'
 
-const ItemList = ({id,nombre,clas,piezas,precio,img}) => {
+const ItemList = ({product}) => {
+
 
   return (
     <div className="col-lg-4 col-md-6 col-sm-12">
     <div className="card product">
     <div className="card-header">
-    <h4>{nombre}</h4>
+    <h4>{product.nombre}</h4>
   </div>
-  <img className="card-img-top img-prod" src={img} alt={id} />
+  <img className="card-img-top img-prod" src={product.img} alt={product.id} />
   <div className="card-body">
-    <p>Categoría: {clas} </p>
-    <p>Piezas disponibles: {piezas}</p>
-    <p>Precio: ${precio} mxn</p>
+    <p>Categoría: {product.clas} </p>
+    <p>Piezas disponibles: {product.piezas}</p>
+    <p>Precio: ${product.precio} mxn</p>
     
-    <Link to={`/detalle/${id}`} className="btn btn-success">COMPRAR</Link>
+    <Link to={`/detalle/${product.id}`} className="btn btn-success">VER DETALLE</Link>
   </div>
 </div>
 </div>

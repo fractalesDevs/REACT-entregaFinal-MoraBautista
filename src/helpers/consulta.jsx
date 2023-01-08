@@ -1,4 +1,4 @@
-let prod = [
+export let prod = [
     {id:'ma01',nombre:'Maceta 1', clas:'macetas',piezas:'5',precio:'150',img:'https://cdn.shopify.com/s/files/1/0596/9559/5675/products/42635_2_5000x.jpg?v=1663698313'},
     {id:'ma02',nombre:'Maceta 2', clas:'macetas',piezas:'5',precio:'170',img:'https://resources.claroshop.com/medios-plazavip/mkt/60e4a0947d3bd_teu_chicajpg.jpg?scale=340'
     },
