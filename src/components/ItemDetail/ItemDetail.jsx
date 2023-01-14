@@ -1,18 +1,31 @@
-import Input from "../Input/Input"
+import { useEffect, useState } from "react"
+import { usarCarritoContexto } from "../../context/CarritoContexto"
 import Intercambio from "../Intercambio/Intercambio"
-import Contador from '../Contador/Contador'
-import { useContext } from "react"
-import { ContextoGral } from "../../App"
 
 
 
 const ItemDetail = ({proDetalle}) => {
 
-  const { saludar } = useContext(ContextoGral)
+  const { stockRestar,listaCarrito, actStockGlobal } = usarCarritoContexto()
+  const piezasIniciales = parseInt(proDetalle.piezas)
+  const [stockFinal,setStockFinal] = useState(piezasIniciales)
+  const productoCoincide = listaCarrito.find(item => item.id === proDetalle.id);
 
-  console.log(saludar)
+      let resta = stockFinal - stockRestar
+      useEffect(()=>{
+        productoCoincide && setStockFinal(resta)
+      }, [stockRestar])
+
+      
+
+
+    
+ 
+
+
   return (
     <>
+    
     <div className="row justify-content-center">
     <div className="col-lg-8 col-md-8 col-sm-12">
     <div className="card product">
@@ -22,14 +35,13 @@ const ItemDetail = ({proDetalle}) => {
   <img className="card-img-top img-prod" src={proDetalle.img} alt={proDetalle.id} />
   <div className="card-body">
     <p>Categoría: {proDetalle.clas} </p>
-    <p>Piezas disponibles: {proDetalle.piezas}</p>
+    <p className={stockFinal ? 'btn btn-dark' : 'btn btn-danger'}>Piezas disponibles: {stockFinal}</p>
     <p>Precio: ${proDetalle.precio} mxn</p>
   </div>
   <div className="card-header">
-  <Intercambio /> 
+  <Intercambio proDetalle={proDetalle} stockFinal={stockFinal}/> 
   </div>
 </div>
-{/*<Input />*/}
 </div>
    </div>
 </>

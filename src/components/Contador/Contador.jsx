@@ -1,9 +1,13 @@
+import { useContext } from 'react';
 import { useState, useEffect } from 'react'
+import { CarritoContexto } from '../../context/CarritoContexto';
 
 const Contador = () => {
+  const { piezasAcumuladas } = useContext(CarritoContexto);
     const [contador, setearContador] = useState(0);
 const sumarCount = () => {
-    setearContador(contador + 1);
+    setearContador(contador + 1)
+    console.log("piezasAcumuladas")
 }
 const restarCount = () => {
     setearContador(contador - 1);

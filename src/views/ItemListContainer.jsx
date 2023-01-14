@@ -1,10 +1,14 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemList from '../components/ItemList/ItemList';
 import ParrafosTexto from '../components/ParrafosTexto/ParrafosTexto';
-import consulta from '../helpers/consulta';
+
+
+
+import { collection,getDocs, getFirestore } from 'firebase/firestore'
+
 import './ItemListContainer.css'
+
 
 function ItemListContainer() {
 
@@ -12,28 +16,24 @@ function ItemListContainer() {
   const [cargando,setCargando] = useState(true);
   
  const { catId } = useParams()
- console.log(catId)
 
-  useEffect( () => {
+  useEffect(()=>{
+    const db = getFirestore()
+    const queryCollection = collection(db,'productos')
+  
     if (catId) {
-         //setInterval(()=>{
-          consulta() //Simulación de fetch
-          .then( respuestaAceptado => setProducts(respuestaAceptado.filter(catego=>catego.clas===catId)))
-          .catch(err => console.log(err) )
-          .finally(()=>setCargando(false))
-        //}, 5000);
-    } else {
-      //setInterval(()=>{
-        consulta() //Simulación de fetch
-        .then( respuestaAceptado => setProducts(respuestaAceptado))
-        .catch(err => console.log(err) )
-        .finally(()=>setCargando(false))
-      //}, 5000);
-      
+      getDocs(queryCollection)
+      .then(respuesta =>respuesta.docs.map(product => ({ id:product.id,...product.data() }) ) )
+      .then( respuestaAceptado => setProducts(respuestaAceptado.filter(catego=>catego.clas===catId)))
+      .catch(err => console.log(err))
+      .finally(()=>setCargando(false))
+    }else{
+      getDocs(queryCollection)
+      .then(respuesta =>setProducts (respuesta.docs.map(product => ({ id:product.id,...product.data() }) )) )
+      .catch(err => console.log(err))
+      .finally(()=>setCargando(false))
     }
-  }, [catId])
-
-  //console.log('Mis productos : ', products);
+      },[catId])
 
   return (
     <>

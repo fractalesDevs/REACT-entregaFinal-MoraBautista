@@ -13,7 +13,6 @@ const ItemList = ({product}) => {
   <img className="card-img-top img-prod" src={product.img} alt={product.id} />
   <div className="card-body">
     <p>Categoría: {product.clas} </p>
-    <p>Piezas disponibles: {product.piezas}</p>
     <p>Precio: ${product.precio} mxn</p>
     
     <Link to={`/detalle/${product.id}`} className="btn btn-success">VER DETALLE</Link>

@@ -8,24 +8,13 @@ import CarritoContainer from './views/CarritoContainer'
 import { prod } from './helpers/consulta'
 
 import './App.css'
-import { createContext } from 'react'
-
-export const ContextoGral = createContext( [] ) // Carrito de compra
+import { CarritoContextoProvider } from './context/CarritoContexto'
 
 
 function App() {
-
-  const saludar = ()=> console.log('Hola Bola!!!')
-  console.log(ContextoGral);
-
   return ( 
    
-    <ContextoGral.Provider value={
-      {
-        prod,
-        saludar
-      }
-    }>
+    <CarritoContextoProvider>
 
 <BrowserRouter>
       <Navbar />
@@ -43,7 +32,7 @@ function App() {
       
     </BrowserRouter>
 
-    </ContextoGral.Provider>
+    </CarritoContextoProvider>
 
    
    )

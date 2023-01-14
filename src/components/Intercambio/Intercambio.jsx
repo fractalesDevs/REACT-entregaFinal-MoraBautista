@@ -1,16 +1,23 @@
 import { useState } from "react"
+import { usarCarritoContexto } from "../../context/CarritoContexto"
 import BotonCart from "../BotonCart/BotonCart"
 import ItemCount from "../ItemCount/ItemCount"
 
-const Intercambio = () => {
 
+const Intercambio = ({proDetalle,stockFinal}) => {
+
+  const { agregaCarrito,colocarItems,sumarPrecio } = usarCarritoContexto()
 
     const [inputTipo,setInputTipo] = useState('button')
 
     const handlerChange = () => {
         setInputTipo('input')
     }
-    const onAdd = (cantidad)=> {console.log(cantidad)}
+    const onAdd = (cantidad)=> {
+      agregaCarrito({...proDetalle,cantidad})
+      colocarItems(cantidad)
+      sumarPrecio(proDetalle.precio,cantidad)
+    }
 
   return (
     <>
@@ -19,9 +26,10 @@ const Intercambio = () => {
         inputTipo === 'button' ?
         <ItemCount 
         handlerChange={handlerChange} 
-        stock={5} 
         initial={1} 
-        onAdd={onAdd} />
+        stock={stockFinal}
+        onAdd={onAdd}
+        id={proDetalle.id} />
         :
         <BotonCart />
     }

@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { usarCarritoContexto } from "../../context/CarritoContexto";
 
-const ItemCount = ({handlerChange, stock=5, initial=1, onAdd }) => {
+
+
+const ItemCount = ({handlerChange,stock=5, initial=1, onAdd, id }) => {
+
+    const {handlerStock} = usarCarritoContexto()
 
     const [contador, setearContador] = useState(initial);
 const handleOnAdd = ()=> onAdd(contador)
@@ -15,6 +20,7 @@ const restCount = () => {
         setearContador(contador - 1)
     }
  }
+
     
         return (
             <>
@@ -31,7 +37,7 @@ const restCount = () => {
     </div>
         <button 
                     className="btn btn-outline-success" 
-                    onClick={()=>{handlerChange(); handleOnAdd()}}
+                    onClick={()=>{handlerChange(), handleOnAdd(),handlerStock(contador,id)}}
                 >Agregar al carrito</button>
                 </>
                 )
