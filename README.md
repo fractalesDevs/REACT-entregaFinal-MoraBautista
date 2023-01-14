@@ -19,4 +19,6 @@ dependencies
 El proyecto esta cargado en GitHub y puede visualizarse mediante el siguiente link:
 
 DEMO:
+https://somosfractales.com/react-entrega/
 
+* Al recargar sucede un redireccionamiento al root del servidor, desconozco la causa. :(
