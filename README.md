@@ -1,9 +1,16 @@
 # REACT-entregaFinal-MoraBautista
-Entrega fnal de proyecto en react
+Entrega fnal de proyecto en react.
+
+
 
 
 # REACT-entregaFinal-MoraBautista
 Entrega fnal de proyecto en react de Eduardo Mora Bautista
+
+E-commerce que ofrece artículos para el hogar hechos artesanalmente y con envío a todo México. Con 3 grandes secciones:
+MACETAS
+LLAVEROS
+ARTÍCULOS DE MADERA
 
 dependencies
     "bootstrap": "^5.2.3",
