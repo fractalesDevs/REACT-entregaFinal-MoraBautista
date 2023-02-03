@@ -30,9 +30,10 @@ const CarritoContainer = () => {
   const generarOrden = (evt) => {
     evt.preventDefault();
 
+    console.log(dataFormulario)
     const orden = {};
 
-    if (dataFormulario.mail === dataFormulario.mail2) {
+    if ( dataFormulario.nombre !== '' && dataFormulario.mail !=='' && dataFormulario.mail2 !== '' && dataFormulario.tel !== '' && dataFormulario.mail === dataFormulario.mail2) {
       orden.comprador = dataFormulario;
       orden.articulos = listaCarrito.map(({ nombre, id, precio }) => ({
         nombre,
@@ -45,11 +46,21 @@ const CarritoContainer = () => {
       const queryOrden = collection(db, "pedidos");
 
       addDoc(queryOrden, orden)
-        .then((resp) => console.log(resp))
+        .then((resp) => {
+          console.log(orden.articulos)
+          let artComprados = orden.articulos.map(({nombre}) => nombre )
+        alert(`Compras realizada con exito. El ID de tu compra: ${resp.id}
+        Consérvalo para aclaraciones.
+        Artículos comprados:
+         ${artComprados} `) 
+        })
+
         .finally(() => vaciarCarro(), reseteoCantidad(), vaciarPrecio());
-      alert("Pedido realizado");
+
+        
+      
     } else {
-      alert("No coinciden los mails");
+      alert("Por favor ingresa correctamente los datos y cerciórate de que coincidan los mails");
     }
   };
 
